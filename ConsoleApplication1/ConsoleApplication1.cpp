@@ -36,7 +36,7 @@ void LTH() {
 	}
 }
 void tsort() {
-	end->next= (st*)malloc(sizeof(st));
+	end->next = (st*)malloc(sizeof(st));
 	end = end->next;
 	st *tra = p.next->next;
 	st *trapr = p.next;
@@ -326,6 +326,434 @@ void sortUI() {
 		}
 	}
 }
+void MAX() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.按所有课程      2.按语文成绩      *\n");
+		printf("*   3.按数学成绩      4.按英语成绩      *\n");
+		printf("*                     0.退出            *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:printf("%s  %d\n", p.MAXname, p.MAX); break;
+		case 2:printf("%s  %d\n", p.CMAXname, p.CMAX); break;
+		case 3:printf("%s  %d\n", p.MMAXname, p.MMAX); break;
+		case 4:printf("%s  %d\n", p.EMAXname, p.EMAX); break;
+		case 0: {system("cls"); return; }
+		}
+		while (n) {
+			printf("按0退出。\n");
+			scanf("%d", &n);
+			system("cls"); return;
+		}
+	}
+}
+void MIN() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.按所有课程      2.按语文成绩      *\n");
+		printf("*   3.按数学成绩      4.按英语成绩      *\n");
+		printf("*                     0.退出            *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:printf("%s  %d\n", p.MINname, p.MIN); break;
+		case 2:printf("%s  %d\n", p.CMINname, p.CMIN); break;
+		case 3:printf("%s  %d\n", p.MMINname, p.MMIN); break;
+		case 4:printf("%s  %d\n", p.EMINname, p.EMIN); break;
+		case 0: {system("cls"); return; }
+		}
+		while (n) {
+			printf("按0退出。\n");
+			scanf("%d", &n);
+			system("cls"); return;
+		}
+	}
+}
+void taver() {
+	float count = 0;
+	int n = 1;
+	st *work = p.next->next;
+	while (work != NULL) {
+		count += work->total;
+		work = work->next;
+	}
+	printf("总分平均分为：%.2f分\n", count / p.num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Caver() {
+	float count = 0;
+	int n = 1;
+	st *work = p.next->next;
+	while (work != NULL) {
+		count += work->Cgrade;
+		work = work->next;
+	}
+	printf("语文平均分为：%.2f分\n", count / p.num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Maver() {
+	float count = 0;
+	int n = 1;
+	st *work = p.next->next;
+	while (work != NULL) {
+		count += work->Mgrade;
+		work = work->next;
+	}
+	printf("数学平均分为：%.2f分\n", count / p.num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Eaver() {
+	float count = 0;
+	int n = 1;
+	st *work = p.next->next;
+	while (work != NULL) {
+		count += work->Egrade;
+		work = work->next;
+	}
+	printf("英语平均分为：%.2f分\n", count / p.num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void averageUI() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.按总分          2.按语文成绩      *\n");
+		printf("*   3.按数学成绩      4.按英语成绩      *\n");
+		printf("*                     0.退出            *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:taver(); break;
+		case 2:Caver(); break;
+		case 3:Maver(); break;
+		case 4:Eaver(); break;
+		case 0: {system("cls"); return; }
+		}
+	}
+}
+void Cper() {
+	int count[5] = { 0 };
+	int n = 1;
+	float num = 0;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Cgrade <= 100 && work->Cgrade >= 90)
+			count[0]++;
+		else if (work->Cgrade <= 89 && work->Cgrade >= 80)
+			count[1]++;
+		else if (work->Cgrade <= 79 && work->Cgrade >= 70)
+			count[2]++;
+		else if (work->Cgrade <= 69 && work->Cgrade >= 60)
+			count[3]++;
+		else if (work->Cgrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	num = (count[0] / (float)p.num) * 100;
+	printf("语文成绩100~90分人数：%d    占总人数%.2f%%\n", count[0], num);
+	num = (count[1] / (float)p.num) * 100;
+	printf("语文成绩89~80分人数：%d    占总人数%.2f%%\n", count[1], num);
+	num = (count[2] / (float)p.num) * 100;
+	printf("语文成绩79~70分人数：%d	   占总人数%.2f%%\n", count[2], num);
+	num = (count[3] / (float)p.num) * 100;
+	printf("语文成绩69~60分人数：%d	   占总人数%.2f%%\n", count[3], num);
+	num = (count[4] / (float)p.num) * 100;
+	printf("语文成绩60分一下人数：%d    占总人数%.2f%%\n", count[4], num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Mper() {
+	int count[5] = { 0 };
+	int n = 1;
+	float num = 0;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Mgrade <= 100 && work->Mgrade >= 90)
+			count[0]++;
+		else if (work->Mgrade <= 89 && work->Mgrade >= 80)
+			count[1]++;
+		else if (work->Mgrade <= 79 && work->Mgrade >= 70)
+			count[2]++;
+		else if (work->Mgrade <= 69 && work->Mgrade >= 60)
+			count[3]++;
+		else if (work->Mgrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	num = (count[0] / (float)p.num) * 100;
+	printf("数学成绩100~90分人数：%d    占总人数%.2f%%\n", count[0], num);
+	num = (count[1] / (float)p.num) * 100;
+	printf("数学成绩89~80分人数：%d    占总人数%.2f%%\n", count[1], num);
+	num = (count[2] / (float)p.num) * 100;
+	printf("数学成绩79~70分人数：%d	   占总人数%.2f%%\n", count[2], num);
+	num = (count[3] / (float)p.num) * 100;
+	printf("数学成绩69~60分人数：%d	   占总人数%.2f%%\n", count[3], num);
+	num = (count[4] / (float)p.num) * 100;
+	printf("数学成绩60分一下人数：%d    占总人数%.2f%%\n", count[4], num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Eper() {
+	int count[5] = { 0 };
+	int n = 1;
+	float num = 0;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Egrade <= 100 && work->Egrade >= 90)
+			count[0]++;
+		else if (work->Egrade <= 89 && work->Egrade >= 80)
+			count[1]++;
+		else if (work->Egrade <= 79 && work->Egrade >= 70)
+			count[2]++;
+		else if (work->Egrade <= 69 && work->Egrade >= 60)
+			count[3]++;
+		else if (work->Egrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	num = (count[0] / (float)p.num) * 100;
+	printf("英语成绩100~90分人数：%d    占总人数%.2f%%\n", count[0], num);
+	num = (count[1] / (float)p.num) * 100;
+	printf("英语成绩89~80分人数：%d    占总人数%.2f%%\n", count[1], num);
+	num = (count[2] / (float)p.num) * 100;
+	printf("英语成绩79~70分人数：%d	   占总人数%.2f%%\n", count[2], num);
+	num = (count[3] / (float)p.num) * 100;
+	printf("英语成绩69~60分人数：%d	   占总人数%.2f%%\n", count[3], num);
+	num = (count[4] / (float)p.num) * 100;
+	printf("英语成绩60分一下人数：%d    占总人数%.2f%%\n", count[4], num);
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void percentUI() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.按语文成绩      2.按数学成绩      *\n");
+		printf("*   3.按英语成绩                        *\n");
+		printf("*                     0.退出            *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:Cper(); break;
+		case 2:Mper(); break;
+		case 3:Eper(); break;
+		case 0: {system("cls"); return; }
+		}
+	}
+}
+void Cgraph() {
+	int count[5] = { 0 };
+	int n = 1;
+	int max = INT_MIN;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Cgrade <= 100 && work->Cgrade >= 90)
+			count[0]++;
+		else if (work->Cgrade <= 89 && work->Cgrade >= 80)
+			count[1]++;
+		else if (work->Cgrade <= 79 && work->Cgrade >= 70)
+			count[2]++;
+		else if (work->Cgrade <= 69 && work->Cgrade >= 60)
+			count[3]++;
+		else if (work->Cgrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	for (int i = 0; i < 5; i++) {
+		if (count[i] > max) {
+			max = count[i];
+		}
+	}
+	for (int i1 = max; i1 >0; i1--) {
+		for (int i2 = 0; i2 < 5; i2++) {
+			if (count[i2] >= i1) {
+				printf("*	");
+			}
+			else
+				printf("	");
+		}
+		printf("\n");
+	}
+	printf("100~90	89~80	79~70	69~60	60以下\n");
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Mgraph() {
+	int count[5] = { 0 };
+	int n = 1;
+	int max = INT_MIN;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Mgrade <= 100 && work->Mgrade >= 90)
+			count[0]++;
+		else if (work->Mgrade <= 89 && work->Mgrade >= 80)
+			count[1]++;
+		else if (work->Mgrade <= 79 && work->Mgrade >= 70)
+			count[2]++;
+		else if (work->Mgrade <= 69 && work->Mgrade >= 60)
+			count[3]++;
+		else if (work->Mgrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	for (int i = 0; i < 5; i++) {
+		if (count[i] > max) {
+			max = count[i];
+		}
+	}
+	for (int i1 = max; i1 > 0; i1--) {
+		for (int i2 = 0; i2 < 5; i2++) {
+			if (count[i2] >= i1) {
+				printf("*	");
+			}
+			else
+				printf("	");
+		}
+		printf("\n");
+	}
+	printf("100~90	89~80	79~70	69~60	60以下\n");
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void Egraph() {
+	int count[5] = { 0 };
+	int n = 1;
+	int max = INT_MIN;
+	st *work = p.next->next;
+	while (work != NULL) {
+		if (work->Egrade <= 100 && work->Egrade >= 90)
+			count[0]++;
+		else if (work->Egrade <= 89 && work->Egrade >= 80)
+			count[1]++;
+		else if (work->Egrade <= 79 && work->Egrade >= 70)
+			count[2]++;
+		else if (work->Egrade <= 69 && work->Egrade >= 60)
+			count[3]++;
+		else if (work->Egrade < 60)
+			count[4]++;
+		work = work->next;
+	}
+	for (int i = 0; i < 5; i++) {
+		if (count[i] > max) {
+			max = count[i];
+		}
+	}
+	for (int i1 = max; i1 > 0; i1--) {
+		for (int i2 = 0; i2 < 5; i2++) {
+			if (count[i2] >= i1) {
+				printf("*	");
+			}
+			else
+				printf("	");
+		}
+		printf("\n");
+	}
+	printf("100~90	89~80	79~70	69~60	60以下\n");
+	while (n) {
+		printf("按0退出。\n");
+		scanf("%d", &n);
+		system("cls"); return;
+	}
+}
+void graphUI() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.按语文成绩      2.按数学成绩      *\n");
+		printf("*   3.按英语成绩                        *\n");
+		printf("*                     0.退出            *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:Cgraph(); break;
+		case 2:; break;
+		case 3:; break;
+		case 0: {system("cls"); return; }
+		}
+	}
+}
+void informationUI() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.百分比            2.统计图        *\n");
+		printf("*                       0.退出          *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:percentUI(); break;
+		case 2:graphUI(); break;
+		case 0: {system("cls"); return; }
+		}
+	}
+}
+void statisticsUI() {
+	while (1) {
+		printf("*****************************************\n");
+		printf("*   1.最高分            2.最低分        *\n");
+		printf("*   3.平均分            4.统计信息      *\n");
+		printf("*                       0.退出          *\n");
+		printf("*****************************************\n");
+		int n;
+		printf("请输入功能序号：");
+		scanf("%d", &n);
+		system("cls");
+		switch (n) {
+		case 1:MAX(); break;
+		case 2:MIN(); break;
+		case 3:averageUI(); break;
+		case 4:informationUI(); break;
+		case 0:return;
+		}
+		system("cls");
+	}
+}
 int main() {
 	p.next = (st*)malloc(sizeof(st));//建一个空的头结点
 	end = p.next;
@@ -341,7 +769,7 @@ int main() {
 		system("cls");
 		switch (n) {
 		case 1:addst(); break;
-		case 2:break;
+		case 2:statisticsUI(); break;
 		case 3:sortUI(); break;
 		case 4:break;
 		case 5:break;
