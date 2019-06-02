@@ -600,7 +600,7 @@ void Cgraph() {
 			max = count[i];
 		}
 	}
-	for (int i1 = max; i1 >0; i1--) {
+	for (int i1 = max; i1 > 0; i1--) {
 		for (int i2 = 0; i2 < 5; i2++) {
 			if (count[i2] >= i1) {
 				printf("*	");
@@ -754,6 +754,53 @@ void statisticsUI() {
 		system("cls");
 	}
 }
+void del(st *work,st *workpr) {
+	if (work == end)
+		end = workpr;
+	workpr->next = work->next;
+	free(work);
+	printf("删除成功！\n按0退出。");
+	int n = 1;
+	while (n) {
+		scanf("%d", &n);
+		return;
+	}
+}
+void find() {
+	int n = 1;
+	int flag = 0;
+	if (p.num == 0) {
+		printf("抱歉！目前学生数据为空。\n按0退出");
+		while (n) {
+			scanf("%d", n);
+			return;
+		}
+	}
+	st *workpr = p.next;
+	st *work = p.next->next;
+	puts("请输入要查询学生的姓名：");
+	char findname[10];
+	scanf("%s", findname);
+	while (n) {
+		if (!strcmp(findname, work->name)) {
+			printf("总分%d，语文%d，数学%d，英语%d\n", work->total, work->Cgrade, work->Mgrade, work->Egrade);
+			printf("删除该学生数据请按1，返回请按0.\n");
+			scanf("%d", &flag);
+			if (flag == 1)
+				del(work,workpr);
+			system("cls");
+			return;
+		}
+		workpr = work;
+		work = work->next;
+		if (work == NULL) {
+			printf("该学生无数据！\n按0退出。");
+			scanf("%d", &n);
+			system("cls");
+			return;
+		}
+	}
+}
 int main() {
 	p.next = (st*)malloc(sizeof(st));//建一个空的头结点
 	end = p.next;
@@ -771,8 +818,7 @@ int main() {
 		case 1:addst(); break;
 		case 2:statisticsUI(); break;
 		case 3:sortUI(); break;
-		case 4:break;
-		case 5:break;
+		case 4:find(); break;
 		case 0:return 0;
 		}
 	}
