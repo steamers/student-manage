@@ -24,7 +24,7 @@ st *end;
 st *endpr;
 void HTL(st *p) {
 	if (p->next != NULL) {
-		HTL(p = p->next);
+		HTL(p->next);
 	}
 	printf("%s  %d  %d  %d  %d\n", p->name, p->total, p->Cgrade, p->Mgrade, p->Egrade);
 }
@@ -78,8 +78,14 @@ void tsort() {
 	scanf("%d", &m);
 	system("cls");
 	switch (m) {
-	case 1:HTL(p.next->next); break;
-	case 2:LTH(); break;
+	case 1:HTL(p.next->next);
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
+	case 2:LTH();
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
 	case 0:return;
 	}
 }
@@ -126,8 +132,14 @@ void Csort() {
 	scanf("%d", &m);
 	system("cls");
 	switch (m) {
-	case 1:HTL(p.next->next); break;
-	case 2:LTH(); break;
+	case 1:HTL(p.next->next); 
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
+	case 2:LTH();
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
 	case 0:return;
 	}
 }
@@ -174,8 +186,14 @@ void Msort() {
 	scanf("%d", &m);
 	system("cls");
 	switch (m) {
-	case 1:HTL(p.next->next); break;
-	case 2:LTH(); break;
+	case 1:HTL(p.next->next);
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
+	case 2:LTH(); 
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
 	case 0:return;
 	}
 }
@@ -222,8 +240,14 @@ void Esort() {
 	scanf("%d", &m);
 	system("cls");
 	switch (m) {
-	case 1:HTL(p.next->next); break;
-	case 2:LTH(); break;
+	case 1:HTL(p.next->next);
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
+	case 2:LTH();
+		printf("按0退出。");
+		scanf("%d", &m);
+		system("cls"); break;
 	case 0:return;
 	}
 }
@@ -710,8 +734,8 @@ void graphUI() {
 		system("cls");
 		switch (n) {
 		case 1:Cgraph(); break;
-		case 2:; break;
-		case 3:; break;
+		case 2:Mgraph(); break;
+		case 3:Egraph(); break;
 		case 0: {system("cls"); return; }
 		}
 	}
@@ -749,12 +773,11 @@ void statisticsUI() {
 		case 2:MIN(); break;
 		case 3:averageUI(); break;
 		case 4:informationUI(); break;
-		case 0:return;
+		case 0: {system("cls"); return; }
 		}
-		system("cls");
 	}
 }
-void del(st *work,st *workpr) {
+void del(st *work, st *workpr) {
 	if (work == end)
 		end = workpr;
 	workpr->next = work->next;
@@ -787,7 +810,7 @@ void find() {
 			printf("删除该学生数据请按1，返回请按0.\n");
 			scanf("%d", &flag);
 			if (flag == 1)
-				del(work,workpr);
+				del(work, workpr);
 			system("cls");
 			return;
 		}
